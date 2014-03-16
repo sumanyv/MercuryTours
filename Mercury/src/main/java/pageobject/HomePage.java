@@ -1,12 +1,15 @@
 package pageobject;
 
-import core.PageObject;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
 
-public class HomePage implements PageObject {
-
-	public void clickLink(String linkText) {
-		// TODO Auto-generated method stub
-		
+public class HomePage{
+	
+	@FindBy(linkText="SIGN-ON")
+	private WebElement signOnLink;
+	
+	public void clickSignOn() {
+		signOnLink.click();
 	}
 	
 
