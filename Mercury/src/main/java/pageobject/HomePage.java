@@ -13,7 +13,7 @@ public class HomePage{
 	
 	public void clickSignOn() {
 		signOnLink.click();
-		logger.trace("Click on WebElement : {} ",signOnLink);
+		logger.info("Click on WebElement : {} ",signOnLink);
 	}
 	
 
