@@ -18,6 +18,8 @@ public class HomePage implements PageObject{
 	/* Links in Page */
 	@FindBy(linkText="SIGN-ON")
 	private WebElement signOnLink;
+	@FindBy(linkText="REGISTER")
+	private WebElement registerLink;
 	
 	public HomePage(WebDriver driver){
 		this.driver = driver;
@@ -29,6 +31,13 @@ public class HomePage implements PageObject{
 		return PageFactory.initElements(driver, SignonPage.class);
 		
 	}
+	
+	public RegisterPage clickRegister(){
+		registerLink.click();
+		log.info("Click Successfull : {} ",registerLink);
+		return PageFactory.initElements(driver, RegisterPage.class);
+	}
+	
 
 	public String getTitle(){
 		log.info("Page Title : {}",title);

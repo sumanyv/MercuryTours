@@ -9,29 +9,29 @@ import org.testng.annotations.AfterClass;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
-import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
 import pageobject.HomePage;
+import pageobject.RegisterPage;
 import pageobject.SignonPage;
 
 public class TC_LINK {
 	private WebDriver driver;
 	
-	@Test(dataProvider = "testdata")
-	public void LINK(String link, String expected) {
-
+	@Test
+	public void SIGNON() {
 		HomePage home = PageFactory.initElements(driver, HomePage.class);
 		SignonPage signon =home.clickSignOn();
 		Assert.assertEquals(driver.getTitle(), signon.getTitle());
 	}
-
-	@DataProvider
-	public Object[][] testdata() {
-		return new Object[][] {{ "SIGN-ON", "Sign-on: Mercury Tours" }};
+	
+	@Test
+	public void REGISTER(){
+		HomePage home = PageFactory.initElements(driver, HomePage.class);
+		RegisterPage register = home.clickRegister();
+		Assert.assertEquals(driver.getTitle(), register.getTitle());
 	}
-	
-	
+
 	@BeforeClass
 	public void beforeClass(){
 		driver = new FirefoxDriver();
