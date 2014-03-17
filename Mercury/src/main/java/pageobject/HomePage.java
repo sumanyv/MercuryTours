@@ -31,6 +31,7 @@ public class HomePage implements PageObject{
 	}
 
 	public String getTitle(){
+		log.info("Page Title : {}",title);
 		return title;
 	}
 

@@ -11,6 +11,7 @@ public class SignonPage implements PageObject{
 	private final String title = "Sign-on: Mercury Tours";
 	
 	public String getTitle(){
+		log.info("Page Title : {}",title);
 		return title;
 	}
 }
