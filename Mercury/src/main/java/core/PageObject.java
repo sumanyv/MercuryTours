@@ -1,4 +1,4 @@
-package core.PageObject;
+package core;
 
 public interface PageObject {
 
