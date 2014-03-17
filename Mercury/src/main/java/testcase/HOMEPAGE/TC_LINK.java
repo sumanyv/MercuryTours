@@ -13,6 +13,7 @@ import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
 import pageobject.HomePage;
+import pageobject.SignonPage;
 
 public class TC_LINK {
 	private WebDriver driver;
@@ -20,14 +21,14 @@ public class TC_LINK {
 	@Test(dataProvider = "testdata")
 	public void LINK(String link, String expected) {
 
-		HomePage page = PageFactory.initElements(driver, HomePage.class);
-		page.clickSignOn();
-		Assert.assertEquals(driver.getTitle(), expected);
+		HomePage home = PageFactory.initElements(driver, HomePage.class);
+		SignonPage signon =home.clickSignOn();
+		Assert.assertEquals(driver.getTitle(), signon.getTitle());
 	}
 
 	@DataProvider
 	public Object[][] testdata() {
-		return new Object[][] {{ "SIGN-ON", "Sign-on : Mercury Tours" }};
+		return new Object[][] {{ "SIGN-ON", "Sign-on: Mercury Tours" }};
 	}
 	
 	
