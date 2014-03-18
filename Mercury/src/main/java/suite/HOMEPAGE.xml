@@ -1,9 +1,9 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
- 
-<suite name="HOMEPAGE" verbose="1" >
-  <test name="Nopackage" >
-    <classes>
-       <class name="testcase.HOMEPAGE.TC_LINK" />
-    </classes>
-  </test>
+
+<suite name="HOMEPAGE" verbose="1">
+	<test name="ALL TEST">
+		<packages>
+			<package name="testcase.HOMEPAGE"></package>
+		</packages>
+	</test>
 </suite>

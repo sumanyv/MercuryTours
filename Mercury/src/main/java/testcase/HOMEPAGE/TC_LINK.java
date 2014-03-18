@@ -1,15 +1,14 @@
 package testcase.HOMEPAGE;
 
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.support.PageFactory;
 import org.testng.Assert;
 import org.testng.annotations.AfterClass;
-import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
+
+import core.DriverFactory;
 
 import pageobject.HomePage;
 import pageobject.RegisterPage;
@@ -34,19 +33,15 @@ public class TC_LINK {
 
 	@BeforeClass
 	public void beforeClass(){
-		driver = new FirefoxDriver();
+		driver = DriverFactory.getDriver();
 	}
 	
 	@BeforeMethod
 	public void beforeMethod() {
-		driver.get("http://newtours.demoaut.com/mercurywelcome.php");
+		driver.get(DriverFactory.getURL());
 	}
 
-	@AfterMethod
-	public void afterMethod() {
-		driver.findElement(By.linkText("Home"));
-	}
-	
+		
 	@AfterClass
 	public void afterClass(){
 		driver.quit();

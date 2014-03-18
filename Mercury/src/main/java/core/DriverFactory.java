@@ -22,4 +22,8 @@ public class DriverFactory {
 		}
 		return driver;
 	}
+	
+	public static String getURL(){
+		return URL;
+	}
 }
