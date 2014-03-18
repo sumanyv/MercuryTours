@@ -1,7 +1,5 @@
 package testcase.REGISTERPAGE;
 
-import java.util.ArrayList;
-
 import org.openqa.selenium.WebDriver;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
