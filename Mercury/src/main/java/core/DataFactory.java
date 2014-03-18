@@ -12,20 +12,15 @@ import java.util.List;
  * @author adityas
  *
  */
-public class DataSet {
+public class DataFactory {
 
-	private String filePath;
-
-	public DataSet(String filePath){
-		this.filePath=filePath;
-	}
-
-	public List<String[]> getData(){
+	@SuppressWarnings("null")
+	public static Object[][] getData(String filePath){
 		List<String[]>  dataSet= new ArrayList<String[]>();
 		String line =null;
 		String split =",";
 
-		InputStream inputStream = getClass().getClassLoader().getResourceAsStream(filePath+".csv");
+		InputStream inputStream = new DataFactory().getClass().getClassLoader().getResourceAsStream(filePath+".csv");
 		BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream ));
 
 		try {
@@ -35,6 +30,9 @@ public class DataSet {
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+		}
+		for(String[] row:dataSet){
+			Object[i] da = row;
 		}
 		return dataSet;
 	}
