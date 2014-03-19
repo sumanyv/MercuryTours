@@ -1,9 +1,9 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
 
-<suite name="HOMEPAGE" verbose="1">
+<suite name="REGISTER" verbose="1">
 	<test name="ALL TEST">
 		<packages>
-			<package name="testcase.HOMEPAGE"></package>
+			<package name="testcase.REGISTERPAGE"></package>
 		</packages>
 	</test>
 </suite>

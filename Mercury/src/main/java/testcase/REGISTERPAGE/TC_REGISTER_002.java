@@ -15,22 +15,24 @@ import pageobject.RegisterPage;
 import core.DataFactory;
 import core.DriverFactory;
 
-public class TC_REGISTER {
+public class TC_REGISTER_002 {
 
-	WebDriver driver ;
-	@Test(dataProvider = "dp")
-	public void REGISTER_DATA(String FirstName, String LastName,String Phone, String Email) {
+	private WebDriver driver ;
+	private RegisterPage register;
+	
+	@Test(dataProvider = "register")
+	public void CONTACT_DATA(String FirstName, String LastName,String Phone, String Email,String address1,String address2,String city , String state ,String postal , String country) {
 		HomePage home = PageFactory.initElements(driver, HomePage.class);
-		RegisterPage register = home.clickRegister();
+		register = home.clickRegister();
 		register.fillContactInfo(FirstName, LastName, Phone, Email);
+		register.fillMailInfo(address1, address2, city, state, postal, country);
 	}
+	
 	@DataProvider
-	public Object[][] dp() {
-		
-		Object[][] dataset = DataFactory.getData("testdata/REGISTRATION/FORM");
+	public Object[][] register(){
+		Object[][] dataset = DataFactory.getData("testdata/REGISTRATION/REGISTER");
 		return dataset;
 	}
-
 	@BeforeClass
 	public void beforeClass(){
 		driver = DriverFactory.getDriver();
