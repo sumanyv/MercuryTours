@@ -4,6 +4,7 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.util.Arrays;
 
 public class CsvDataSet implements DataSet {
 	static int  MAX_ROW;
@@ -33,7 +34,9 @@ public class CsvDataSet implements DataSet {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		return dataSet;
+		Object[][] toReturn = new Object[i][];
+		toReturn = Arrays.copyOf(dataSet,i);
+		return toReturn;
 	}
 
 }

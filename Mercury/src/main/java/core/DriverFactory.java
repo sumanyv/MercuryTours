@@ -9,7 +9,7 @@ public class DriverFactory {
 	static String URL;
 	static{
 		browser = ResourceFactory.getBundle().getString("browser");
-		URL = ResourceFactory.getBundle().getString("URL");
+		URL = ResourceFactory.getBundle().getString("url");
 	}
 	public static WebDriver getDriver(){
 		WebDriver driver=null;
