@@ -21,11 +21,26 @@ public class TC_REGISTER_002 {
 	private RegisterPage register;
 	
 	@Test(dataProvider = "register")
-	public void CONTACT_DATA(String FirstName, String LastName,String Phone, String Email,String address1,String address2,String city , String state ,String postal , String country) {
+	public void REGISTER(
+			String FirstName,
+			String LastName,
+			String Phone,
+			String Email,
+			String address1,
+			String address2,
+			String city,
+			String state,
+			String postal,
+			String country,
+			String username,
+			String password
+			) {
 		HomePage home = PageFactory.initElements(driver, HomePage.class);
 		register = home.clickRegister();
 		register.fillContactInfo(FirstName, LastName, Phone, Email);
 		register.fillMailInfo(address1, address2, city, state, postal, country);
+		register.fillUserInfo(username, password);
+		register.clickSubmit();
 	}
 	
 	@DataProvider

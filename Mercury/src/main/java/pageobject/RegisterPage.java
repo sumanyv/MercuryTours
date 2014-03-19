@@ -14,7 +14,7 @@ public class RegisterPage implements PageObject {
 	private final String title = "Register: Mercury Tours";
 	private WebDriver driver;
 	
-	/* Page Contact Fields */
+	/* Contact Fields */
 	@FindBy(name="firstName")
 	private WebElement txtFirstName;
 	@FindBy(name="lastName")
@@ -24,7 +24,7 @@ public class RegisterPage implements PageObject {
 	@FindBy(name="userName")
 	private WebElement txtEmail;
 	
-	/* Page Mail Fields */
+	/* Mail Fields */
 	@FindBy(name="address1")
 	private WebElement txtAddress1;
 	@FindBy(name="address2")
@@ -37,6 +37,21 @@ public class RegisterPage implements PageObject {
 	private WebElement txtPostCode;
 	@FindBy(name="country")
 	private WebElement selCountry;
+	
+	/* User Info Fields */
+	@FindBy(name="email")
+	private WebElement txtUserName;
+	@FindBy(name="password")
+	private WebElement txtPassword;
+	@FindBy(name="confirmPassword")
+	private WebElement txtConfirmPass;
+	
+	/* Submit Button */
+	@FindBy(name="register")
+	private WebElement btSubmit;
+	
+	
+	
 
 	public RegisterPage(WebDriver driver) {
 		this.driver=driver;
@@ -64,6 +79,16 @@ public class RegisterPage implements PageObject {
 		txtPostCode.sendKeys(postal);
 		selCountry.sendKeys(country);
 		log.info("Mail info Set : {}, {}, {}, {},{},{}",address1,address2,city,state,postal,country);
+	}
+	
+	public void fillUserInfo(String username , String password){
+		txtUserName.sendKeys(username);
+		txtPassword.sendKeys(password);
+		txtConfirmPass.sendKeys(password);
+	}
+	
+	public void clickSubmit(){
+		btSubmit.click();
 	}
 
 }

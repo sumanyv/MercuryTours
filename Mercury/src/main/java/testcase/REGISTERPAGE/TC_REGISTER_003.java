@@ -8,27 +8,29 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
-import pageobject.HomePage;
-import pageobject.RegisterPage;
-
 import core.DataFactory;
 import core.DriverFactory;
 
-public class TC_REGISTER_001 {
+import pageobject.HomePage;
+import pageobject.RegisterPage;
+
+public class TC_REGISTER_003 {
+ 
 	private WebDriver driver ;
 
-	@Test(dataProvider = "contact")
-	public void CONTACT_DATA(String FirstName, String LastName,String Phone, String Email) {
+	@Test(dataProvider ="mail" )
+	public void MAIL_DATA(String address1,String address2,String city , String state ,String postal , String country){
 		HomePage home = PageFactory.initElements(driver, HomePage.class);
 		RegisterPage register = home.clickRegister();
-		register.fillContactInfo(FirstName, LastName, Phone, Email);
+		register.fillMailInfo(address1, address2, city, state, postal, country);
 	}
+	
 	@DataProvider
-	public Object[][] contact() {
-		Object[][] dataset = DataFactory.getData("testdata/REGISTRATION/CONTACT");
+	public Object[][] mail(){
+		Object[][] dataset = DataFactory.getData("testdata/REGISTRATION/MAIL");
 		return dataset;
 	}
-	@BeforeClass
+  @BeforeClass
 	public void beforeClass(){
 		driver = DriverFactory.getDriver();
 	}
