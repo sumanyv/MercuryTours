@@ -6,5 +6,10 @@ package core;
  */
 public interface DataSet {
 
+	/**
+	 * Return a array of data set
+	 * @param filePath
+	 * @return Object[][]
+	 */
 	public Object[][] getData(String filePath);
 }
