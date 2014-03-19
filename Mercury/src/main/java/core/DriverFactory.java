@@ -8,8 +8,8 @@ public class DriverFactory {
 	static String browser;
 	static String URL;
 	static{
-		browser = ResourceFactory.bundle.getString("browser");
-		URL = ResourceFactory.bundle.getString("URL");
+		browser = ResourceFactory.getBundle().getString("browser");
+		URL = ResourceFactory.getBundle().getString("URL");
 	}
 	public static WebDriver getDriver(){
 		WebDriver driver=null;

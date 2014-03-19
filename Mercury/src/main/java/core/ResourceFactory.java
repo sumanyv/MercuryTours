@@ -4,7 +4,7 @@ import java.util.ResourceBundle;
 
 public class ResourceFactory {
 
-	static ResourceBundle bundle;
+	private static ResourceBundle bundle;
 
 	static{
 		bundle = ResourceBundle.getBundle("webapp");
