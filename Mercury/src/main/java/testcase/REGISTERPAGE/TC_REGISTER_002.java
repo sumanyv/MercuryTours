@@ -2,7 +2,6 @@ package testcase.REGISTERPAGE;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.PageFactory;
-import org.testng.Assert;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
@@ -45,7 +44,7 @@ public class TC_REGISTER_002 {
 	
 	@DataProvider
 	public Object[][] register(){
-		Object[][] dataset = DataFactory.getData("testdata/REGISTRATION/REGISTER");
+		Object[][] dataset = DataFactory.getDataObject("testdata/REGISTRATION/REGISTER");
 		return dataset;
 	}
 	@BeforeClass

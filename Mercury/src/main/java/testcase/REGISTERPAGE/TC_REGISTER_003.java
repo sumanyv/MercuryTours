@@ -27,7 +27,7 @@ public class TC_REGISTER_003 {
 	
 	@DataProvider
 	public Object[][] mail(){
-		Object[][] dataset = DataFactory.getData("testdata/REGISTRATION/MAIL");
+		Object[][] dataset = DataFactory.getDataObject("testdata/REGISTRATION/MAIL");
 		return dataset;
 	}
   @BeforeClass

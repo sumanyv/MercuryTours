@@ -1,4 +1,7 @@
 package core;
+
+import java.util.Map;
+
 /**
  * All test data types should implement this interface
  * @author adityas
@@ -7,9 +10,18 @@ package core;
 public interface DataSet {
 
 	/**
-	 * Return a array of data set
-	 * @param filePath
-	 * @return Object[][]
+	 * Return a Array of Map with data set pair
+	  * @param filePath : Without extension
+	 * <br>
+	 * <b>Eg : test.csv = "test"
 	 */
-	public Object[][] getData(String filePath);
+	Map<String, String>[] getDataMap(String filePath);
+
+	/**
+	 * Returns the Object[][] with data set
+	 * @param filePath : Without extension
+	 * <br>
+	 * <b>Eg : test.csv = "test"
+	 */
+	Object[][] getDataObject(String filePath);
 }
