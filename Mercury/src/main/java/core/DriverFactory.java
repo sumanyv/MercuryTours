@@ -2,6 +2,7 @@ package core;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.support.events.EventFiringWebDriver;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -25,6 +26,10 @@ public class DriverFactory {
 			driver.get(URL);
 			log.info("Firefox Driver Created : {}" ,driver);
 		}
+		// Adding Web Event Listner
+		EventFiringWebDriver efirDriver = new EventFiringWebDriver(driver);
+		WebEventListner driverListner = new WebEventListner();
+		driver = efirDriver.register(driverListner);
 		return driver;
 	}
 	
