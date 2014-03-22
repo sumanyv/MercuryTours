@@ -12,13 +12,13 @@ public class WebEventListner implements WebDriverEventListener {
 	private final Logger log = LoggerFactory.getLogger("STEP");
 	@Override
 	public void beforeNavigateTo(String url, WebDriver driver) {
-		log.info("START : Navigate To : {} ",url);
+	//	log.info("START : Navigate To : {} ",url);
 
 	}
 
 	@Override
 	public void afterNavigateTo(String url, WebDriver driver) {
-		log.info("FINISH : Navigate To : {} ",url);
+		log.info("Navigate To : {} ",url);
 	}
 
 	@Override
@@ -49,7 +49,7 @@ public class WebEventListner implements WebDriverEventListener {
 
 	@Override
 	public void afterFindBy(By by, WebElement element, WebDriver driver) {
-		log.info("FINISH : Operation On : {} ",by.toString());
+		log.trace("FINISH : Operation On : {} ",by.toString());
 	}
 
 	@Override
@@ -59,12 +59,12 @@ public class WebEventListner implements WebDriverEventListener {
 
 	@Override
 	public void afterClickOn(WebElement element, WebDriver driver) {
-		log.info("FINISH : Click On : {} ",element.getText());
+//		log.info("FINISH : Click On : {} ",element.getText());
 	}
 
 	@Override
 	public void beforeChangeValueOf(WebElement element, WebDriver driver) {
-		log.info("CURRENT : Element : {} , Value : {} ",element.getText(),element.getAttribute("value") );
+//		log.info("CURRENT : Element : {} , Value : {} ",element.getText(),element.getAttribute("value") );
 	}
 
 	@Override

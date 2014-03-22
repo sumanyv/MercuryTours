@@ -1,9 +1,11 @@
-package core;
+package testCore;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.testng.Assert;
 import org.testng.annotations.Test;
+
+import core.DataFactory;
 
 public class TestDataSet {
 	private static final Logger log = LoggerFactory.getLogger(TestDataSet.class);
