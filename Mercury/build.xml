@@ -2,6 +2,14 @@
 	<property name="src" location="src" />
 	<property name="bin" location="target" />
 	<property name="libs" location="lib" />
+	<path location="target"></path>
+	
+	<path id="class.path">
+	      <pathelement location="${libs}/testng-6.8.8.jar" />
+	      <pathelement location="${libs}/selenium-java-2.40.0.jar" />
+	      <pathelement location="${bin}" />
+	</path>
+	
 	
 	<!-- ================================= 
 	     target: resolve              
@@ -11,16 +19,16 @@
 		<ivy:cachepath pathid="default.classapath" conf="default"/>
 
 	</target>
-	<taskdef name="testng" classname="org.testng.TestNGAntTask" classpathref="">
+	<taskdef name="testng" classname="org.testng.TestNGAntTask" >
+		<classpath>
+			<pathelement location="lib/testng-6.8.8.jar"/>
+		</classpath>
 	</taskdef>
 	<target name="runTest" depends="resolve">
 		<mkdir dir="testng_output"/>
-		<ivy:cachepath pathid="org.testng" conf="test"/>
-
 		<!-- Create the output directory. -->
 		<testng outputdir="testng_output" classpathref="class.path">
-			<xmlfileset dir="." includes="TestNG1.xml"/>
-			<xmlfileset dir="." includes="TestNG2.xml"/>
+			<xmlfileset dir="${basedir}/src/test/java/suite/" includes="HOMEPAGE.xml"/>
 		</testng>
 	</target>
 	
