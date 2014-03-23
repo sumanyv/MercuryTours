@@ -1,0 +1,12 @@
+<ivy-module version="2.0">
+<info organisation="org.adi" module="test"></info>
+	<dependencies>
+		<dependency org="org.testng" name="testng" rev="6.8.8" conf="test->default"> </dependency>
+		<dependency org="org.seleniumhq.selenium" name="selenium-java" rev="2.40.0"></dependency>
+		<dependency org="org.slf4j" name="slf4j-log4j12" rev="1.7.6"></dependency>
+	</dependencies>
+	
+	<configurations>
+	<conf name="test" visibility="private" description="For using Testng"/>
+	</configurations>
+</ivy-module>

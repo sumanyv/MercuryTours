@@ -1,26 +1,27 @@
-<project basedir="." default="runTest" name="Ant file for TestNG">   
-  <property name="src" location="src" />
-  <property name="bin" location="target" />
-  <property name="libs" location="" />
-   
-  <path id="class.path">
-      <pathelement location="${libs}/testng-6.2.jar" />
-      <pathelement location="${libs}/selenium-java-client-driver.jar" />
-      <pathelement location="${libs}/selenium-server-standalone-2.6.0.jar" />
-      <pathelement location="${bin}" />
-  </path>   
-    <taskdef name="testng" classname="org.testng.TestNGAntTask">
-      <classpath>
-       <pathelement location="lib/testng-6.2.jar"/>
-     </classpath>
-   </taskdef>
-   
-    <target name="runTest">
-   
-      <mkdir dir="testng_output"/><!-- Create the output directory. -->   
-      <testng outputdir="testng_output" classpathref="class.path"> 
-        <xmlfileset dir="." includes="TestNG1.xml"/> 
-        	<xmlfileset dir="." includes="TestNG2.xml"/> 
-      </testng>
-       </target>
-  </project> 
+<project xmlns:ivy="antlib:org.apache.ivy.ant" basedir="." default="runTest" name="Ant file for TestNG">
+	<property name="src" location="src" />
+	<property name="bin" location="target" />
+	<property name="libs" location="lib" />
+	
+	<!-- ================================= 
+	     target: resolve              
+	================================= -->
+	<target name="resolve" description="--> retrieve dependencies with ivy">
+		<ivy:retrieve />
+		<ivy:cachepath pathid="default.classapath" conf="default"/>
+
+	</target>
+	<taskdef name="testng" classname="org.testng.TestNGAntTask" classpathref="">
+	</taskdef>
+	<target name="runTest" depends="resolve">
+		<mkdir dir="testng_output"/>
+		<ivy:cachepath pathid="org.testng" conf="test"/>
+
+		<!-- Create the output directory. -->
+		<testng outputdir="testng_output" classpathref="class.path">
+			<xmlfileset dir="." includes="TestNG1.xml"/>
+			<xmlfileset dir="." includes="TestNG2.xml"/>
+		</testng>
+	</target>
+	
+</project>
