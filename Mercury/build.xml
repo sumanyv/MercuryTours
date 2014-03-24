@@ -1,4 +1,4 @@
-<project name="TestNG with Ant" default="run" basedir=".">
+<project xmlns:ivy="antlib:org.apache.ivy.ant" name="TestNG with Ant" default="run" basedir=".">
 
 	<!-- ========== Initialize Properties =================================== -->
 	<property environment="env" />
@@ -13,7 +13,12 @@
 	<property name="test.res" value="${ws.home}/src/test/resources" />
 	<property name="testng.report.dir" value="${ws.home}/test-output" />
 
-	<target name="setClassPath" unless="classpath">
+	<!--  retrieve dependencies with ivy -->
+	<target name="getIvyLib" >
+	        <ivy:retrieve />
+	</target>
+	
+	<target name="setClassPath" depends="getIvyLib" unless="classpath">
 		<path id="classpath_jars">
 			<fileset dir="${ws.jars}" includes="*.jar" />
 		</path>
