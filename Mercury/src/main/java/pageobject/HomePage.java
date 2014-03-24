@@ -25,6 +25,10 @@ public class HomePage implements PageObject{
 		this.driver = driver;
 	}
 
+	/**
+	 * Service to Click on SignOn Link
+	 * @param
+	 */
 	public SignonPage clickSignOn() {
 		signOnLink.click();
 		log.info("Click Successfull : {} ",signOnLink);
@@ -32,13 +36,17 @@ public class HomePage implements PageObject{
 		
 	}
 	
+	/**
+	 * Service to Click on Register Link
+	 * @param
+	 */
 	public RegisterPage clickRegister(){
 		registerLink.click();
 		log.info("Click Successfull : {} ",registerLink);
 		return PageFactory.initElements(driver, RegisterPage.class);
 	}
 	
-
+	@Override
 	public String getTitle(){
 		log.info("Page Title : {}",title);
 		return title;

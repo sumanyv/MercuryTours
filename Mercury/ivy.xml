@@ -4,5 +4,7 @@
 		<dependency org="org.testng" name="testng" rev="6.8.8" > </dependency>
 		<dependency org="org.seleniumhq.selenium" name="selenium-java" rev="2.40.0"></dependency>
 		<dependency org="org.slf4j" name="slf4j-log4j12" rev="1.7.6"></dependency>
+		<dependency org="org.apache.velocity" name="velocity" rev="1.6.2"></dependency>
+		<dependency org="org.uncommons" name="reportng" rev="1.1.4"></dependency>
 	</dependencies>
 </ivy-module>

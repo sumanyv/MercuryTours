@@ -53,6 +53,126 @@ public class RegisterPage implements PageObject {
 	
 	
 
+	/**
+	 * Returns the getDriver
+	 * @param driver
+	 */
+	public WebDriver getDriver() {
+		return driver;
+	}
+
+	/**
+	 * Returns the getTxtFirstName
+	 * @param txtFirstName
+	 */
+	public WebElement getTxtFirstName() {
+		return txtFirstName;
+	}
+
+	/**
+	 * Returns the getTxtLastName
+	 * @param txtLastName
+	 */
+	public WebElement getTxtLastName() {
+		return txtLastName;
+	}
+
+	/**
+	 * Returns the getTxtPhone
+	 * @param txtPhone
+	 */
+	public WebElement getTxtPhone() {
+		return txtPhone;
+	}
+
+	/**
+	 * Returns the getTxtEmail
+	 * @param txtEmail
+	 */
+	public WebElement getTxtEmail() {
+		return txtEmail;
+	}
+
+	/**
+	 * Returns the getTxtAddress1
+	 * @param txtAddress1
+	 */
+	public WebElement getTxtAddress1() {
+		return txtAddress1;
+	}
+
+	/**
+	 * Returns the getTxtAddress2
+	 * @param txtAddress2
+	 */
+	public WebElement getTxtAddress2() {
+		return txtAddress2;
+	}
+
+	/**
+	 * Returns the getTxtCity
+	 * @param txtCity
+	 */
+	public WebElement getTxtCity() {
+		return txtCity;
+	}
+
+	/**
+	 * Returns the getTxtState
+	 * @param txtState
+	 */
+	public WebElement getTxtState() {
+		return txtState;
+	}
+
+	/**
+	 * Returns the getTxtPostCode
+	 * @param txtPostCode
+	 */
+	public WebElement getTxtPostCode() {
+		return txtPostCode;
+	}
+
+	/**
+	 * Returns the getSelCountry
+	 * @param selCountry
+	 */
+	public WebElement getSelCountry() {
+		return selCountry;
+	}
+
+	/**
+	 * Returns the getTxtUserName
+	 * @param txtUserName
+	 */
+	public WebElement getTxtUserName() {
+		return txtUserName;
+	}
+
+	/**
+	 * Returns the getTxtPassword
+	 * @param txtPassword
+	 */
+	public WebElement getTxtPassword() {
+		return txtPassword;
+	}
+
+	/**
+	 * Returns the getTxtConfirmPass
+	 * @param txtConfirmPass
+	 */
+	public WebElement getTxtConfirmPass() {
+		return txtConfirmPass;
+	}
+
+	/**
+	 * Returns the getBtSubmit
+	 * @param btSubmit
+	 */
+	public WebElement getBtSubmit() {
+		return btSubmit;
+	}
+
 	public RegisterPage(WebDriver driver) {
 		this.driver=driver;
 	}
@@ -63,6 +183,10 @@ public class RegisterPage implements PageObject {
 		return title;
 	}
 	
+	/**
+	 * Service to fill contact info in Registration Page
+	 * @param
+	 */
 	public void fillContactInfo(String firstName ,String lastName, String phone , String email){
 		txtFirstName.sendKeys(firstName);
 		txtLastName.sendKeys(lastName);
@@ -71,6 +195,10 @@ public class RegisterPage implements PageObject {
 		log.info("Contact info Set : {}, {}, {}, {} ",firstName,lastName,phone,email);
 	}
 	
+	/**
+	 * Service to fill Mail info in Registration Page
+	 * @param
+	 */
 	public void fillMailInfo(String address1,String address2,String city ,String state , String postal , String country){
 		txtAddress1.sendKeys(address1);
 		txtAddress2.sendKeys(address2);
@@ -81,12 +209,21 @@ public class RegisterPage implements PageObject {
 		log.info("Mail info Set : {}, {}, {}, {},{},{}",address1,address2,city,state,postal,country);
 	}
 	
+	/**
+	 * 
+	 * Service to fill User info in Registration Page
+	 * @param
+	 */
 	public void fillUserInfo(String username , String password){
 		txtUserName.sendKeys(username);
 		txtPassword.sendKeys(password);
 		txtConfirmPass.sendKeys(password);
 	}
 	
+	/**
+	 * Service to Click on Submit Button in Registration Page
+	 * @param
+	 */
 	public void clickSubmit(){
 		btSubmit.click();
 	}

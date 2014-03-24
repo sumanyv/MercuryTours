@@ -14,13 +14,28 @@ public class SignonPage implements PageObject{
 	
 	@FindBy(name="userName")
 	private WebElement txtUserName;
+	@FindBy(name="password")
+	private WebElement txtPassword;
 	
+	@Override
 	public String getTitle(){
 		log.info("Page Title : {}",title);
 		return title;
 	}
 	
-	public void sendUserName(){
-		txtUserName.sendKeys("Aditya");
+	/**
+	 * Service to Fill userName
+	 * @param
+	 */
+	public void fillUserName(String userName){
+		txtUserName.sendKeys(userName);
+	}
+	
+	/**
+	 * Service to Fill password
+	 * @param
+	 */
+	public void fillPassword(String password){
+		txtPassword.sendKeys(password);
 	}
 }

@@ -83,11 +83,12 @@
 	<!-- run -->
 	<target name="run" depends="compile">
 
-		<testng outputdir="${testng.report.dir}" classpath="${classpath}:${test.dest}:${main.dest}">
+	<!--	<testng outputdir="${testng.report.dir}"  useDefaultListeners="false" haltonfailure="true" classpath="${classpath}:${test.dest}:${main.dest}"
+			listeners="org.uncommons.reportng.HTMLReporter,org.uncommons.reportng.JUnitXMLReporter">
 			<xmlfileset dir="${test.dest}/suite/" includes="HOMEPAGE.xml" />
-		</testng>
-		<!-- <testng outputdir="${testng.report.dir}" classpath="${classpath}:${test.dest}:${main.dest}"> 
-			<classfileset dir="${test.dest}" includes="**/*.class"/> </testng> -->
+		</testng> -->
+		<testng outputdir="${testng.report.dir}" classpath="${classpath}:${test.dest}:${main.dest}"> 
+			<classfileset dir="${test.dest}" includes="**/*.class"/> </testng> 
 	</target>
 
 	<!-- target name="usage">
