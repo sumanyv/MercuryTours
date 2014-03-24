@@ -1,35 +1,99 @@
-<project xmlns:ivy="antlib:org.apache.ivy.ant" basedir="." default="runTest" name="Ant file for TestNG">
-	<property name="src" location="src" />
-	<property name="bin" location="target" />
-	<property name="libs" location="lib" />
-	<path location="target"></path>
-	
-	<path id="class.path">
-	      <pathelement location="${libs}/testng-6.8.8.jar" />
-	      <pathelement location="${libs}/selenium-java-2.40.0.jar" />
-	      <pathelement location="${bin}" />
-	</path>
-	
-	
-	<!-- ================================= 
-	     target: resolve              
-	================================= -->
-	<target name="resolve" description="--> retrieve dependencies with ivy">
-		<ivy:retrieve />
-		<ivy:cachepath pathid="default.classapath" conf="default"/>
+<project name="TestNG with Ant" default="run" basedir=".">
 
+	<!-- ========== Initialize Properties =================================== -->
+	<property environment="env" />
+	<property name="ws.home" value="${basedir}" />
+	<property name="bin.dir" value="${ws.home}/target" />
+	<property name="ws.jars" value="lib" />
+	<property name="test.dest" value="${bin.dir}/test-classes" />
+	<property name="test.src" value="${ws.home}/src/test/java" />
+	<property name="main.dest" value="${bin.dir}/classes" />
+	<property name="main.src" value="${ws.home}/src/main/java" />
+	<property name="main.res" value="${ws.home}/src/main/resources" />
+	<property name="test.res" value="${ws.home}/src/test/resources" />
+	<property name="testng.report.dir" value="${ws.home}/test-output" />
+
+	<target name="setClassPath" unless="classpath">
+		<path id="classpath_jars">
+			<fileset dir="${ws.jars}" includes="*.jar" />
+		</path>
+		<pathconvert pathsep=":" property="classpath" refid="classpath_jars" />
 	</target>
-	<taskdef name="testng" classname="org.testng.TestNGAntTask" >
-		<classpath>
-			<pathelement location="lib/testng-6.8.8.jar"/>
-		</classpath>
-	</taskdef>
-	<target name="runTest" depends="resolve">
-		<mkdir dir="testng_output"/>
-		<!-- Create the output directory. -->
-		<testng outputdir="testng_output" classpathref="class.path">
-			<xmlfileset dir="${basedir}/src/test/java/suite/" includes="HOMEPAGE.xml"/>
-		</testng>
+
+	<target name="init" depends="setClassPath">
+		<tstamp>
+			<format property="start.time" pattern="MM/dd/yyyy hh:mm aa" />
+		</tstamp>
+		<condition property="ANT" value="${env.ANT_HOME}/bin/ant.bat"
+			else="${env.ANT_HOME}/bin/ant">
+			<os family="windows" />
+		</condition>
+		<taskdef name="testng" classpath="${classpath}" classname="org.testng.TestNGAntTask" />
+	</target>
+
+	<!-- all -->
+	<target name="clean-all" depends="clean-bin,clean-report">
+	</target>
+
+	<!-- clean build -->
+	<target name="clean-bin">
+		<delete dir="${bin.dir}" />
+	</target>
+
+	<!-- clean result -->
+	<target name="clean-report">
+		<delete dir="${testng.report.dir}" />
+	</target>
+
+	<!-- compile -->
+	<target name="compile" depends="init, clean-bin">
+		<delete includeemptydirs="true" quiet="true">
+			<fileset dir="${test.dest}" includes="**/*" />
+			<fileset dir="${main.dest}" includes="**/*" />
+		</delete>
+		<echo message="copying resources ..." />
+		<copy todir="${test.dest}" overwrite="true">
+			<fileset dir="${test.src}">
+				<include name="**/*.xml" />
+			</fileset>
+		</copy>
+		<copy todir="${main.dest}" overwrite="true">
+			<fileset dir="${main.res}">
+				<include name="**/*" />
+			</fileset>
+		</copy>
+		<echo message="making directory..." />
+		<mkdir dir="${test.dest}" />
+		<mkdir dir="${main.dest}" />
+		<echo message="classpath------: ${classpath}" />
+		<echo message="compiling..." />
+		<javac debug="true" destdir="${test.dest}" srcdir="${test.src}:${main.src}"
+			target="1.7" classpath="${classpath}">
+		</javac>
+		<javac debug="true" destdir="${main.dest}" srcdir="${main.src}"
+			target="1.7" classpath="${classpath}">
+		</javac>
 	</target>
 	
+	<!-- run -->
+	<target name="run" depends="compile">
+
+		<testng outputdir="${testng.report.dir}" classpath="${classpath}:${test.dest}:${main.dest}">
+			<xmlfileset dir="${test.dest}/suite/" includes="HOMEPAGE.xml" />
+		</testng>
+		<!-- <testng outputdir="${testng.report.dir}" classpath="${classpath}:${test.dest}:${main.dest}"> 
+			<classfileset dir="${test.dest}" includes="**/*.class"/> </testng> -->
+	</target>
+
+	<!-- target name="usage">
+		<echo>ant run will execute the test</echo>	
+	</target -->
+	
+	<!--target name="start-selenium-server"> <java jar="${ws.home}/lib/selenium-server.jar"/> 
+	</target -->
+	
+	<!-- build 
+	<target name="build" depends="init">
+	</target> -->
+
 </project>
