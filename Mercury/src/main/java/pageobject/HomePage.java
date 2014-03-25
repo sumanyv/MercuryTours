@@ -31,8 +31,10 @@ public class HomePage implements PageObject{
 	@FindBy(name="login")
 	private WebElement btSubmit;
 	
-	public HomePage(WebDriver driver){
+	public HomePage(WebDriver driver) throws Exception{
 		this.driver = driver;
+		if(!driver.getTitle().equals(title))
+			throw new Exception("Not In Home Page");
 	}
 
 	

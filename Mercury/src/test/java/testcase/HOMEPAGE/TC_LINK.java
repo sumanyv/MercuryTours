@@ -7,28 +7,30 @@ import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
-
-import core.DriverFactory;
+import org.testng.asserts.SoftAssert;
 
 import pageobject.HomePage;
 import pageobject.RegisterPage;
 import pageobject.SignonPage;
+import core.DriverFactory;
+import core.HardAssertion;
 
 public class TC_LINK {
 	private WebDriver driver;
+	private SoftAssert sVerify = new SoftAssert();
 	
 	@Test
 	public void SIGNON() {
 		HomePage home = PageFactory.initElements(driver, HomePage.class);
 		SignonPage signon =home.clickSignOn();
-		Assert.assertEquals(driver.getTitle(), signon.getTitle());
+		sVerify.assertEquals(driver.getTitle(), signon.getTitle());
 	}
 	
 	@Test
 	public void REGISTER(){
 		HomePage home = PageFactory.initElements(driver, HomePage.class);
 		RegisterPage register = home.clickRegister();
-		Assert.assertEquals(driver.getTitle(), register.getTitle());
+		sVerify.assertEquals(driver.getTitle(), register.getTitle());
 	}
 	
 	@Test
@@ -51,6 +53,7 @@ public class TC_LINK {
 	@AfterClass
 	public void afterClass(){
 		driver.quit();
+		sVerify.assertAll();
 	}
 
 }
