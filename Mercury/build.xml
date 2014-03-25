@@ -1,4 +1,4 @@
-<project xmlns:ivy="antlib:org.apache.ivy.ant" name="TestNG with Ant" default="run" basedir=".">
+<project xmlns:ivy="antlib:org.apache.ivy.ant" name="TestNG with Ant" default="runXmlSuite" basedir=".">
 
 	<!-- ========== Initialize Properties =================================== -->
 	<property environment="env" />
@@ -58,7 +58,7 @@
 		</delete>
 		<echo message="copying resources ..." />
 		<copy todir="${test.dest}" overwrite="true">
-			<fileset dir="${test.src}">
+			<fileset dir="${test.res}">
 				<include name="**/*.xml" />
 			</fileset>
 		</copy>
@@ -81,7 +81,7 @@
 	</target>
 	
 	<!-- run -->
-	<target name="run" depends="compile">
+	<target name="runAllTests" depends="compile">
 
 	<!--	<testng outputdir="${testng.report.dir}"  useDefaultListeners="false" haltonfailure="true" classpath="${classpath}:${test.dest}:${main.dest}"
 			listeners="org.uncommons.reportng.HTMLReporter,org.uncommons.reportng.JUnitXMLReporter">
@@ -89,6 +89,14 @@
 		</testng> -->
 		<testng outputdir="${testng.report.dir}" classpath="${classpath}:${test.dest}:${main.dest}"> 
 			<classfileset dir="${test.dest}" includes="**/*.class"/> </testng> 
+	</target>
+	
+	<target name="runXmlSuite" depends="compile">
+
+		<testng outputdir="${testng.report.dir}"  useDefaultListeners="false" haltonfailure="true" classpath="${classpath}:${test.dest}:${main.dest}"
+				listeners="org.uncommons.reportng.HTMLReporter,org.uncommons.reportng.JUnitXMLReporter">
+				<xmlfileset dir="${test.dest}/suite/" includes="HOMEPAGE.xml" />
+		</testng> 
 	</target>
 
 	<!-- target name="usage">
