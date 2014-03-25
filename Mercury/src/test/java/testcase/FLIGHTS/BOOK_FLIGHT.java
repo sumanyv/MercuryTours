@@ -1,4 +1,4 @@
-package testcase.HOMEPAGE;
+package testcase.FLIGHTS;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.PageFactory;
@@ -7,50 +7,41 @@ import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
+import org.testng.asserts.Assertion;
+
+import pageobject.FlightFinderPage;
+import pageobject.HomePage;
+import pageobject.RegisterConfirmPage;
+import pageobject.RegisterPage;
 
 import core.DriverFactory;
 
-import pageobject.HomePage;
-import pageobject.RegisterPage;
-import pageobject.SignonPage;
-
-public class TC_LINK {
+public class BOOK_FLIGHT {
 	private WebDriver driver;
-	
+
 	@Test
-	public void SIGNON() {
-		HomePage home = PageFactory.initElements(driver, HomePage.class);
-		SignonPage signon =home.clickSignOn();
-		Assert.assertEquals(driver.getTitle(), signon.getTitle());
-	}
-	
-	@Test
-	public void REGISTER(){
+	public void FLIGHT() {
 		HomePage home = PageFactory.initElements(driver, HomePage.class);
 		RegisterPage register = home.clickRegister();
-		Assert.assertEquals(driver.getTitle(), register.getTitle());
-	}
-	
-	@Test
-	public void FLIGHTS(){
-		HomePage home = PageFactory.initElements(driver, HomePage.class);
-		home.clickFlights();
+		register.fillUserInfo("aditya@gmail.com", "1234");
+		RegisterConfirmPage confirm =register.clickSubmit();
+		Assert.assertTrue(confirm.getMessage().contains("aditya@gmail.com"));
+		FlightFinderPage flightFinder =confirm.clickFlights();
+		
 	}
 
 	@BeforeClass
 	public void beforeClass(){
 		driver = DriverFactory.getDriver();
 	}
-	
+
 	@BeforeMethod
 	public void beforeMethod() {
 		driver.get(DriverFactory.getURL());
 	}
 
-		
 	@AfterClass
 	public void afterClass(){
 		driver.quit();
 	}
-
 }

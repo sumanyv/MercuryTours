@@ -17,21 +17,38 @@ public class HomePage implements PageObject{
 
 	/* Links in Page */
 	@FindBy(linkText="SIGN-ON")
-	private WebElement signOnLink;
+	private WebElement lkSignOn;
 	@FindBy(linkText="REGISTER")
-	private WebElement registerLink;
+	private WebElement lkRegister;
+	@FindBy(linkText="Flights")
+	private WebElement lkFlights;
+	
+	/* Sign on Frame */
+	@FindBy(name="userName")
+	private WebElement txtUsername;
+	@FindBy(name="password")
+	private WebElement txtPassword;
+	@FindBy(name="login")
+	private WebElement btSubmit;
 	
 	public HomePage(WebDriver driver){
 		this.driver = driver;
 	}
 
+	
+	public void signIn(String username , String password){
+		txtUsername.sendKeys(username);
+		txtPassword.sendKeys(password);
+		btSubmit.click();
+	}
+	
+	
 	/**
 	 * Service to Click on SignOn Link
 	 * @param
 	 */
 	public SignonPage clickSignOn() {
-		signOnLink.click();
-		log.info("Click Successfull : {} ",signOnLink);
+		lkSignOn.click();
 		return PageFactory.initElements(driver, SignonPage.class);
 		
 	}
@@ -41,9 +58,12 @@ public class HomePage implements PageObject{
 	 * @param
 	 */
 	public RegisterPage clickRegister(){
-		registerLink.click();
-		log.info("Click Successfull : {} ",registerLink);
+		lkRegister.click();
 		return PageFactory.initElements(driver, RegisterPage.class);
+	}
+	
+	public void clickFlights(){
+		lkFlights.click();
 	}
 	
 	@Override

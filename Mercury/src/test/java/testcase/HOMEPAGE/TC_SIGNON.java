@@ -8,35 +8,18 @@ import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
+import pageobject.HomePage;
 import core.DriverFactory;
 
-import pageobject.HomePage;
-import pageobject.RegisterPage;
-import pageobject.SignonPage;
-
-public class TC_LINK {
-	private WebDriver driver;
+public class TC_SIGNON {
+private WebDriver driver;
 	
 	@Test
-	public void SIGNON() {
+	public void VALID() {
 		HomePage home = PageFactory.initElements(driver, HomePage.class);
-		SignonPage signon =home.clickSignOn();
-		Assert.assertEquals(driver.getTitle(), signon.getTitle());
+		home.signIn("aditya", "test");
 	}
 	
-	@Test
-	public void REGISTER(){
-		HomePage home = PageFactory.initElements(driver, HomePage.class);
-		RegisterPage register = home.clickRegister();
-		Assert.assertEquals(driver.getTitle(), register.getTitle());
-	}
-	
-	@Test
-	public void FLIGHTS(){
-		HomePage home = PageFactory.initElements(driver, HomePage.class);
-		home.clickFlights();
-	}
-
 	@BeforeClass
 	public void beforeClass(){
 		driver = DriverFactory.getDriver();

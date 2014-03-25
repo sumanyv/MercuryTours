@@ -3,6 +3,7 @@ package pageobject;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.PageFactory;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -51,16 +52,6 @@ public class RegisterPage implements PageObject {
 	private WebElement btSubmit;
 	
 	
-	
-
-	/**
-	 * Returns the getDriver
-	 * @param driver
-	 */
-	public WebDriver getDriver() {
-		return driver;
-	}
-
 	/**
 	 * Returns the getTxtFirstName
 	 * @param txtFirstName
@@ -223,9 +214,11 @@ public class RegisterPage implements PageObject {
 	/**
 	 * Service to Click on Submit Button in Registration Page
 	 * @param
+	 * @return 
 	 */
-	public void clickSubmit(){
+	public RegisterConfirmPage clickSubmit(){
 		btSubmit.click();
+		return PageFactory.initElements(driver, RegisterConfirmPage.class);
 	}
 
 }
